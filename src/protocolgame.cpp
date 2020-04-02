@@ -42,6 +42,7 @@ extern CreatureEvents* g_creatureEvents;
 extern Chat* g_chat;
 extern Spells* g_spells;
 extern Monsters g_monsters;
+extern Prey g_prey;
 
 NetworkMessage ProtocolGame::playermsg;
 
@@ -268,7 +269,7 @@ void ProtocolGame::onRecvFirstMessage(NetworkMessage& msg)
 		disconnect();
 		return;
 	}
-	
+
 	uint32_t key[4] = {msg.get<uint32_t>(), msg.get<uint32_t>(), msg.get<uint32_t>(), msg.get<uint32_t>()};
 	enableXTEAEncryption();
 	setXTEAKey(key);
@@ -521,6 +522,8 @@ void ProtocolGame::parsePacket(NetworkMessage& msg)
 		case 0xF7: parseMarketCancelOffer(msg); break;
 		case 0xF8: parseMarketAcceptOffer(msg); break;
 		case 0xF9: parseModalWindowAnswer(msg); break;
+		case 0xED: parseRequestResourceData(msg); break;
+		case 0xEB: parsePreyAction(msg); break;
 
 		default:
 			// std::cout << "Player: " << player->getName() << " sent an unknown packet header: 0x" << std::hex << static_cast<uint16_t>(recvbyte) << std::dec << "!" << std::endl;
@@ -1260,6 +1263,33 @@ void ProtocolGame::parseSeekInContainer(NetworkMessage& msg)
 	uint8_t containerId = msg.getByte();
 	uint16_t index = msg.get<uint16_t>();
 	addGameTask(&Game::playerSeekInContainer, player->getID(), containerId, index);
+}
+
+// Prey System
+void ProtocolGame::parseRequestResourceData(NetworkMessage& msg)
+{
+	ResourceType_t resourceType = static_cast<ResourceType_t>(msg.getByte());
+	addGameTask(&Game::playerRequestResourceData, player->getID(), resourceType);
+}
+
+void ProtocolGame::parsePreyAction(NetworkMessage& msg)
+{
+	uint8_t preySlotId = msg.getByte();
+	PreyAction_t preyAction = static_cast<PreyAction_t>(msg.getByte());
+	uint8_t monsterIndex = 0;
+	if (preyAction == PREY_ACTION_MONSTERSELECTION) {
+		monsterIndex = msg.getByte();
+	}
+	addGameTask(&Game::playerPreyAction, player->getID(), preySlotId, preyAction, monsterIndex);
+}
+
+void ProtocolGame::sendResourceData(ResourceType_t resourceType, int64_t amount)
+{
+	playermsg.reset();
+	playermsg.addByte(0xEE);
+	playermsg.addByte(resourceType);
+	playermsg.add<int64_t>(amount);
+	writeToOutputBuffer(playermsg);
 }
 
 // Send methods
@@ -2056,6 +2086,114 @@ void ProtocolGame::sendBasicData()
 	for (auto spellId : spells) {
 		playermsg.addByte(spellId);
 	}
+	writeToOutputBuffer(playermsg);
+}
+
+void ProtocolGame::sendPreyData(uint8_t preySlotId)
+{
+	if (preySlotId >= PREY_SLOTCOUNT) {
+		return;
+	}
+
+	playermsg.reset();
+	PreyData& currentPreyData = player->preyData[preySlotId];
+	playermsg.addByte(0xE8);
+	playermsg.addByte(preySlotId);
+	playermsg.addByte(currentPreyData.state);
+	if (currentPreyData.state == STATE_LOCKED) {
+		playermsg.addByte(UNLOCK_STORE);
+	} else if (currentPreyData.state == STATE_SELECTION || currentPreyData.state == STATE_SELECTION_CHANGE_MONSTER) {
+		if (currentPreyData.state == STATE_SELECTION_CHANGE_MONSTER) {
+			playermsg.addByte(static_cast<uint8_t>(currentPreyData.bonusType));
+			playermsg.add<uint16_t>(currentPreyData.bonusValue);
+			playermsg.addByte(currentPreyData.bonusGrade);
+		}
+		playermsg.addByte(currentPreyData.preyList.size());
+		for (const std::string& preyName : currentPreyData.preyList) {
+			playermsg.addString(preyName);
+			if (MonsterType* mType = g_monsters.getMonsterType(preyName)) {
+				playermsg.add<uint16_t>(mType->info.outfit.lookType == 0 ? 21 : mType->info.outfit.lookType);
+				playermsg.addByte(mType->info.outfit.lookHead);
+				playermsg.addByte(mType->info.outfit.lookBody);
+				playermsg.addByte(mType->info.outfit.lookLegs);
+				playermsg.addByte(mType->info.outfit.lookFeet);
+				playermsg.addByte(mType->info.outfit.lookAddons);
+			} else {
+				return player->generatePreyData();
+			}
+		}
+	} else if (currentPreyData.state == STATE_ACTIVE) {
+		playermsg.addString(currentPreyData.preyMonster);
+		if (MonsterType* mType = g_monsters.getMonsterType(currentPreyData.preyMonster)) {
+			playermsg.add<uint16_t>(mType->info.outfit.lookType == 0 ? 21 : mType->info.outfit.lookType);
+			playermsg.addByte(mType->info.outfit.lookHead);
+			playermsg.addByte(mType->info.outfit.lookBody);
+			playermsg.addByte(mType->info.outfit.lookLegs);
+			playermsg.addByte(mType->info.outfit.lookFeet);
+			playermsg.addByte(mType->info.outfit.lookAddons);
+		} else {
+			return player->generatePreyData();
+		}
+
+		playermsg.addByte(static_cast<uint8_t>(currentPreyData.bonusType));
+		playermsg.add<uint16_t>(currentPreyData.bonusValue);
+		playermsg.addByte(currentPreyData.bonusGrade);
+		playermsg.add<uint16_t>(currentPreyData.timeLeft);
+	}
+
+	playermsg.add<uint16_t>(player->getFreeRerollTime(preySlotId));
+	if (version >= 1190) {
+		playermsg.addByte(0x00); //preyWildCards
+	}
+	writeToOutputBuffer(playermsg);
+}
+
+void ProtocolGame::sendRerollPrice(uint32_t price)
+{
+	playermsg.reset();
+	playermsg.addByte(0xE9);
+	playermsg.add<uint32_t>(price);
+	if (version >= 1190) {
+		playermsg.addByte(0x01); // bomus reroll
+		playermsg.addByte(0x05);
+	}
+
+	if (version >= 1230) {
+		playermsg.add<uint32_t>(800);
+		playermsg.add<uint32_t>(800);
+		playermsg.addByte(2);
+		playermsg.addByte(1);
+	}
+	writeToOutputBuffer(playermsg);
+}
+
+void ProtocolGame::sendFreeListRerollAvailability(uint8_t preySlotId, uint16_t time)
+{
+	playermsg.reset();
+	playermsg.addByte(0xE6);
+	playermsg.add<uint8_t>(preySlotId);
+	playermsg.add<uint16_t>(time);
+
+	writeToOutputBuffer(playermsg);
+}
+
+void ProtocolGame::sendPreyTimeLeft(uint8_t preySlotId, uint16_t timeLeft)
+{
+	playermsg.reset();
+	playermsg.addByte(0xE7);
+	playermsg.add<uint8_t>(preySlotId);
+	playermsg.add<uint16_t>(timeLeft);
+
+	writeToOutputBuffer(playermsg);	
+}
+
+void ProtocolGame::sendMessageDialog(MessageDialog_t type, const std::string& message)
+{
+	playermsg.reset();
+	playermsg.addByte(0xED);
+	playermsg.addByte(type);
+	playermsg.addString(message);
+
 	writeToOutputBuffer(playermsg);
 }
 
@@ -2884,7 +3022,7 @@ void ProtocolGame::sendCreatureTurn(const Creature* creature, uint32_t stackPos)
 	if (!canSee(creature)) {
 		return;
 	}
-	
+
 	playermsg.reset();
 	playermsg.addByte(0x6B);
 	playermsg.addPosition(creature->getPosition());
@@ -3256,6 +3394,11 @@ void ProtocolGame::sendAddCreature(const Creature* creature, const Position& pos
 		sendClientCheck();
 		sendGameNews();
 	}
+
+	for (uint8_t preySlotId = 0; preySlotId < PREY_SLOTCOUNT; preySlotId++) {
+		sendPreyData(preySlotId);
+	}
+	player->updateRerollPrice();
 	player->sendIcons();
 }
 

@@ -1,5 +1,14 @@
 function onUpdateDatabase()
-	print("> Updating database to version 4 (market history)")
-	db.query("CREATE TABLE `market_history` (`id` INT UNSIGNED NOT NULL AUTO_INCREMENT, `player_id` INT NOT NULL, `sale` TINYINT(1) NOT NULL DEFAULT 0, `itemtype` INT UNSIGNED NOT NULL, `amount` SMALLINT UNSIGNED NOT NULL, `price` INT UNSIGNED NOT NULL DEFAULT 0, `expires_at` BIGINT UNSIGNED NOT NULL, `inserted` BIGINT UNSIGNED NOT NULL, `state` TINYINT(1) UNSIGNED NOT NULL, PRIMARY KEY(`id`), KEY(`player_id`, `sale`), FOREIGN KEY (`player_id`) REFERENCES `players`(`id`) ON DELETE CASCADE) ENGINE = InnoDB")
+	print("> Updating database to version 3 (Binary Save)")
+	db.query("ALTER TABLE `players` ADD `spells` blob DEFAULT NULL")
+	db.query("ALTER TABLE `players` ADD `storages` mediumblob DEFAULT NULL")
+	db.query("ALTER TABLE `players` ADD `items` longblob DEFAULT NULL")
+	db.query("ALTER TABLE `players` ADD `depotitems` longblob DEFAULT NULL")
+	db.query("ALTER TABLE `players` ADD `inboxitems` longblob DEFAULT NULL")
+	db.query("DROP TABLE `player_spells`")
+	db.query("DROP TABLE `player_storage`")
+	db.query("DROP TABLE `player_items`")
+	db.query("DROP TABLE `player_depotitems`")
+	db.query("DROP TABLE `player_inboxitems`")
 	return true
 end
