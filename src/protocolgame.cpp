@@ -286,23 +286,26 @@ void ProtocolGame::onRecvFirstMessage(NetworkMessage& msg)
 	std::string sessionKey = msg.getString();
 
 	auto sessionArgs = explodeString(sessionKey, "\n", 4);
-	if (sessionArgs.size() != 4) {
+	if (sessionArgs.size() != 4 && sessionArgs.size() != 2) {
 		disconnect();
 		return;
 	}
 
 	std::string& accountName = sessionArgs[0];
 	std::string& password = sessionArgs[1];
-	std::string& token = sessionArgs[2];
+	std::string token = "";
 	uint32_t tokenTime = 0;
-	try {
-		tokenTime = std::stoul(sessionArgs[3]);
-	} catch (const std::invalid_argument&) {
-		disconnectClient("Malformed token packet.");
-		return;
-	} catch (const std::out_of_range&) {
-		disconnectClient("Token time is too long.");
-		return;
+	if(sessionArgs.size() == 4) {
+		token = sessionArgs[2];
+		try {
+			tokenTime = std::stoul(sessionArgs[3]);
+		} catch (const std::invalid_argument&) {
+			disconnectClient("Malformed token packet.");
+			return;
+		} catch (const std::out_of_range&) {
+			disconnectClient("Token time is too long.");
+			return;
+		}
 	}
 
 	if (accountName.empty()) {
