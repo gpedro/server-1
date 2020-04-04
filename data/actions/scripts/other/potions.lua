@@ -72,6 +72,10 @@ function onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		target:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 	end
 
+	if not configManager.getBoolean(configKeys.REMOVE_POTION_CHARGES) then
+		return true
+	end
+
 	item:remove(1)
 	return true
 end
