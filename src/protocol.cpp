@@ -46,9 +46,6 @@ void Protocol::onSendMessage(const OutputMessage_ptr& msg)
 
 void Protocol::onRecvMessage(NetworkMessage& msg)
 {
-	if (checksumMethod != CHECKSUM_METHOD_NONE) {
-		msg.get<uint32_t>();
-	}
 	if (encryptionEnabled && !XTEA_decrypt(msg)) {
 		return;
 	}

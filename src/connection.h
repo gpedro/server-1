@@ -106,6 +106,7 @@ class Connection : public std::enable_shared_from_this<Connection>
 
 		void closeSocket();
 		void internalSend(const OutputMessage_ptr& msg);
+		bool detectAttack(const uint32_t currentPacketChecksum);
 
 		boost::asio::ip::tcp::socket& getSocket() {
 			return socket;
@@ -131,6 +132,7 @@ class Connection : public std::enable_shared_from_this<Connection>
 
 		std::underlying_type<ConnectionState_t>::type connectionState = CONNECTION_STATE_OPEN;
 		bool receivedFirst = false;
+		std::unordered_map<uint32_t , uint32_t> checksumsMap;
 };
 
 #endif
