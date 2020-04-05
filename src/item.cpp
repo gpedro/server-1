@@ -73,12 +73,12 @@ Item* Item::CreateItem(const uint16_t type, uint16_t count /*= 0*/)
 			newItem = new Item(type - 2, count);
 		} else if (it.id >= ITEM_RING_RANGE_5 && it.id <= ITEM_RING_RANGE_6) {
 			newItem = new Item(type - 37, count);
-		} else if (it.id == ITEM_SOFT_BOOTS_1) {
-			newItem = new Item(ITEM_SOFT_BOOTS_2, count);
+		} else if (it.id == ITEM_SOFT_BOOTS_START) {
+			newItem = new Item(ITEM_SOFT_BOOTS_END, count);
 		} else if (it.id == ITEM_RING_RANGE_8) {
 			newItem = new Item(ITEM_RING_RANGE_7, count);
-		} else if (it.id == ITEM_PRISMATIC_RING_2) {
-			newItem = new Item(ITEM_PRISMATIC_RING_1, count);
+		} else if (it.id == ITEM_PRISMATIC_RING_END) {
+			newItem = new Item(ITEM_PRISMATIC_RING_START, count);
 		} else {
 			newItem = new Item(type, count);
 		}
@@ -1768,7 +1768,7 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance,
 				} else {
 					s << "unknown";
 				}
-			} else if (it.allowDistRead && (it.id < ITEM_TROPHY_RANGE_1 || it.id > ITEM_TROPHY_RANGE_2)) {
+			} else if (it.allowDistRead && (it.id < ITEM_TROPHY_START || it.id > ITEM_TROPHY_END)) {
 				s << ".\n";
 
 				if (lookDistance <= 4) {
@@ -1846,7 +1846,7 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance,
 		}
 	}
 
-	if (!it.allowDistRead || (it.id >= ITEM_TROPHY_RANGE_1 && it.id <= ITEM_TROPHY_RANGE_2)) {
+	if (!it.allowDistRead || (it.id >= ITEM_TROPHY_START && it.id <= ITEM_TROPHY_END)) {
 		s << '.';
 	} else {
 		if (!text && item) {
@@ -1910,7 +1910,7 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance,
 		s << '\n' << it.description;
 	}
 
-	if (it.allowDistRead && it.id >= ITEM_TROPHY_RANGE_1 && it.id <= ITEM_TROPHY_RANGE_2) {
+	if (it.allowDistRead && it.id >= ITEM_TROPHY_START && it.id <= ITEM_TROPHY_END) {
 		if (!text && item) {
 			text = &item->getText();
 		}
