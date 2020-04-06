@@ -58,11 +58,11 @@ function potions.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		return true
 	else
 		if potion.health then
-			doTargetCombatHealth(0, target, COMBAT_HEALING, potion.health[1], potion.health[2])
+			doTargetCombat(0, target, COMBAT_HEALING, potion.health[1], potion.health[2])
 		end
 
 		if potion.mana then
-			doTargetCombatMana(0, target, potion.mana[1], potion.mana[2])
+			doTargetCombat(0, target, COMBAT_MANADRAIN, potion.mana[1], potion.mana[2])
 		end
 
 		if potion.antidote then
