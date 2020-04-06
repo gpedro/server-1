@@ -277,7 +277,6 @@
 		<attribute key="description" value="It contains Ahmet's stolen property."/>
 	</item>
 	<item id="236" article="a" name="strong health potion">
-		
 		<attribute key="description" value="This potion can only be consumed by paladins and knights of level 50 or higher."/>
 		<attribute key="weight" value="290"/>
 	</item>
@@ -298,12 +297,10 @@
 	<item fromid="240" toid="252" name="linen"/>
 	<item fromid="253" toid="265" article="a" name="tent"/>
 	<item id="266" article="a" name="health potion">
-		
 		<attribute key="weight" value="270"/>
 	</item>
 	<item id="267" name="linen"/>
 	<item id="268" article="a" name="mana potion">
-		
 		<attribute key="weight" value="270"/>
 	</item>
 	<item id="269" article="a" name="dead dragon hatchling">
@@ -15428,7 +15425,6 @@
 		<attribute key="weight" value="1300"/>
 	</item>
 	<item id="7876" article="a" name="small health potion">
-		
 		<attribute key="weight" value="265"/>
 	</item>
 	<item fromid="7877" toid="7878" name="balloons"/>
@@ -22601,7 +22597,6 @@
 		<attribute key="weight" value="50"/>
 	</item>
 	<item id="12699" article="a" name="magic gold converter">
-		
 		<attribute key="charges" value="500"/>
 		<attribute key="showcharges" value="1"/>
 	</item>
@@ -29939,7 +29934,6 @@
 		<attribute key="description" value="It is frosted with tiny ice crystals and starts to melt as look at it."/>
 	</item>
 	<item id="19250" article="a" name="reward chest">
-		<attribute key="type" value="rewardchest"/>
 		<attribute key="description" value="This chest contains your rewards earned in battles."/>
 		<attribute key="containersize" value="32"/>
 		<attribute key="pickupable" value="0"/>
@@ -33779,7 +33773,6 @@
 		<attribute key="weight" value="3000"/>
 	</item>
 	<item id="22183" article="an" name="ogre scepta">
-		
 		<attribute key="range" value="3"/>
 		<attribute key="shoottype" value="smallearth"/>
 		<attribute key="weapontype" value="wand"/>
@@ -34328,11 +34321,9 @@
 	</item>
 	<item id="22736" article="a" name="rift carpet">
 		<attribute key="description" value="This carpet is extremely soft to the touch - and forever will be."/>
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="22737" article="a" name="folded rift carpet">
 		<attribute key="description" value="This carpet is extremely soft to the touch - and forever will be."/>
-		<attribute key="type" value="carpet"/>
 		<attribute key="weight" value="1000"/>
 	</item>
 	<item id="22738" article="a" name="stone wall">
@@ -34969,13 +34960,10 @@
 		<attribute key="rotateto" value="23427"/>	
 	</item>
 	<item id="23431" article="a" name="Yalaharian carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="23432" article="a" name="white fur carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="23433" article="a" name="bamboo Mat">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="23434" article="a" name="predator lamp">
 		<attribute key="rotateto" value="23435"/>	
@@ -35030,13 +35018,10 @@
 		
 	</item>
 	<item id="23453" article="a" name="Yalaharian carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="23454" article="a" name="white fur carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="23455" article="a" name="bamboo mat">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="23456" article="a" name="used red chair kit">
 		<attribute key="description" value="Use it in Jack's house to place a red cushioned chair."/>
@@ -35363,12 +35348,10 @@
 		<attribute key="weight" value="750"/>
 	</item>
 	<item id="23536" article="a" name="folded void carpet">
-		<attribute key="type" value="carpet"/>
 		<attribute key="description" value="This carpet is extremely soft to the touch - and forever will be."/>
 		<attribute key="weight" value="1000"/>
 	</item>
 	<item id="23537" article="a" name="void carpet">
-		<attribute key="type" value="carpet"/>
 		<attribute key="description" value="This carpet is extremely soft to the touch - and forever will be."/>
 		<attribute key="weight" value="1000"/>
 	</item>
@@ -35596,7 +35579,6 @@
 		<attribute key="rotateto" value="23702"/>	
 	</item>
 	<item id="23707" article="a" name="crimson carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="23708" article="a" name="dog house">
 		<attribute key="description" value="This dog is waiting quite eagerly for attention."/>	
@@ -35607,37 +35589,26 @@
 		<attribute key="duration" value="2"/>	
 	</item>
 	<item id="23710" article="an" name="azure carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="23711" article="an" name="emerald carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="23712" article="a" name="light parquet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="23713" article="a" name="dark parquet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="23714" article="a" name="marble parquet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="23715" article="a" name="crimson carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="23716" article="an" name="azure carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="23717" article="an" name="emerald carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="23718" article="a" name="light parquet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="23719" article="a" name="dark parquet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="23720" article="a" name="marble parquet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="23721" article="a" name="gold pouch">
 		<attribute key="containersize" value="8"/>
@@ -35982,52 +35953,36 @@
 		<attribute key="weight" value="300"/>
 	</item>
 	<item id="24416" article="a" name="flowery carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="24417" article="a" name="colourful carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="24418" article="a" name="striped carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="24419" article="a" name="fur carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="24420" article="a" name="diamond carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="24421" article="a" name="patterned carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="24422" article="a" name="night sky carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="24423" article="a" name="star carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="24424" article="a" name="flowery carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="24425" article="a" name="colourful carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="24426" article="a" name="striped carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="24427" article="a" name="fur carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="24428" article="a" name="diamond carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="24429" article="a" name="patterned carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="24430" article="a" name="night sky carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="24431" article="a" name="star carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item fromid="24432" toid="24433" article="a" name="parrot">
 		
@@ -37001,7 +36956,6 @@
 		<attribute key="hitchance" value="90"/>
 		<attribute key="maxhitchance" value="86"/>
 		<attribute key="range" value="4"/>
-		<attribute key="shoottype" value="leafstar"/>
 		<attribute key="weapontype" value="distance"/>
 		<attribute key="weight" value="200"/>
 	</item>
@@ -37047,7 +37001,6 @@
 		<attribute key="slottype" value="ammo"/>
 		<attribute key="showduration" value="1"/>
 		<attribute key="stopduration" value="0"/>
-		<attribute key="shoottype" value="diamondarrow"/>
 		<attribute key="weapontype" value="ammunition"/>
 		<attribute key="weight" value="80"/>
 	</item>
@@ -37057,7 +37010,6 @@
 		<attribute key="decayto" value="0"/>
 		<attribute key="duration" value="3600"/>
 		<attribute key="maxhitchance" value="100"/>
-		<attribute key="shoottype" value="spectralbolt"/>
 		<attribute key="showduration" value="1"/>
 		<attribute key="stopduration" value="0"/>
 		<attribute key="slottype" value="ammo"/>
@@ -37070,7 +37022,6 @@
 		<attribute key="elementfire" value="2"/>
 		<attribute key="maxhitchance" value="100"/>
 		<attribute key="range" value="5"/>
-		<attribute key="shoottype" value="royalstar"/>
 		<attribute key="weapontype" value="distance"/>
 		<attribute key="weight" value="220"/>
 	</item>
@@ -37080,8 +37031,6 @@
 		<attribute key="duration" value="900"/>
 		<attribute key="magiclevelpoints" value="2"/>
 		<attribute key="range" value="4"/>
-		<attribute key="skillcriticalchance" value="10"/>
-		<attribute key="skillcriticaldamage" value="50"/>
 		<attribute key="stopduration" value="0"/>
 		<attribute key="showduration" value="1"/>
 		<attribute key="weight" value="3200"/>
@@ -38646,34 +38595,24 @@
 		<attribute key="rotateto" value="26112"/>	
 	</item>
 	<item id="26114" article="a" name="verdant carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="26115" article="a" name="verdant carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="26116" article="a" name="shaggy carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="26117" article="a" name="shaggy carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="26118" article="a" name="mystic carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="26119" article="a" name="mystic carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="26120" article="a" name="stone tiles">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="26121" article="a" name="stone tiles">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="26122" article="a" name="wooden planks">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="26123" article="a" name="wooden planks">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="26124" name="unknown corpse (skeleton)"/>
 	<item fromid="26125" toid="26128" name="stone tile"/>
@@ -38698,13 +38637,10 @@
 	<item id="26143" article="a" name="small stones"/>
 	<item fromid="26144" toid="26149" name="reserved sprite"/>
 	<item fromid="26150" toid="26150" article="a" name="wheat carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item fromid="26152" toid="26153" article="a" name="crested carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item fromid="26154" toid="26155" article="a" name="decorated carpet">
-		<attribute key="type" value="carpet"/>	
 	</item>
 	<item id="26156" article="an" name="ornate chair">
 		<attribute key="rotateto" value="26157"/>	
@@ -39012,7 +38948,6 @@
 		<attribute key="weight" value="3500"/>
 	</item>
 	<item id="27458" article="a" name="rod of destruction">
-		
 		<attribute key="magiclevelpoints" value="2"/>
 		<attribute key="range" value="4"/>
 		<attribute key="shoottype" value="ice"/>
@@ -43429,7 +43364,6 @@
 	<item id="30373" article="a" name="white raven kit"/>
 	<item fromid="30374" toid="30392" name="reserved sprite"/>
 	<item id="30393" article="a" name="cobra crossbow">
-		
 		<attribute key="slottype" value="two-handed"/>
 		<attribute key="skilldist" value="2"/>
 		<attribute key="weight" value="4000"/>
@@ -43468,18 +43402,12 @@
 		<attribute key="weight" value="4000"/>
 	</item>
 	<item id="30399" name="cobra wand">
-		
 		<attribute key="magiclevelpoints" value="2"/>
-		<attribute key="skillcriticalchance" value="10"/>
-		<attribute key="skillcriticaldamage" value="35"/>
 		<attribute key="weapontype" value="wand"/>
 		<attribute key="weight" value="4000"/>
 	</item>
 	<item id="30400" name="cobra rod">
-		
 		<attribute key="magiclevelpoints" value="2"/>
-		<attribute key="skilllifechance" value="100"/>
-		<attribute key="skilllifeamount" value="18"/>
 		<attribute key="weapontype" value="wand"/>
 		<attribute key="weight" value="2500"/>
 	</item>
@@ -44827,7 +44755,6 @@
 	<item id="31580" article="a" name="mortal mace">
 		<attribute key="attack" value="8"/>
 		<attribute key="defense" value="27"/>
-		<attribute key="elementdeath" value="44"/>
 		<attribute key="extradef" value="2"/>
 		<attribute key="skillclub" value="2"/>
 		<attribute key="weapontype" value="club"/>
