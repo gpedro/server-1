@@ -408,8 +408,6 @@ class Player final : public Creature, public Cylinder
 		bool isPremium() const;
 		void setPremiumDays(int32_t v);
 
-		uint16_t getHelpers() const;
-
 		bool setVocation(uint16_t vocId);
 		uint16_t getVocationId() const {
 			return vocation->getId();
@@ -822,11 +820,6 @@ class Player final : public Creature, public Cylinder
 		void sendCreatureType(const Creature* creature, uint8_t creatureType) {
 			if (client) {
 				client->sendCreatureType(creature, creatureType);
-			}
-		}
-		void sendCreatureHelpers(uint32_t creatureId, uint16_t helpers) {
-			if (client) {
-				client->sendCreatureHelpers(creatureId, helpers);
 			}
 		}
 		void sendSpellCooldown(uint8_t spellId, uint32_t time) {
