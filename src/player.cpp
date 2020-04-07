@@ -652,10 +652,7 @@ void Player::addStorageValue(const uint32_t key, const int32_t value, const bool
 
 		if (!isLogin) {
 			auto currentFrameTime = g_dispatcher.getDispatcherCycle();
-			if (lastQuestlogUpdate != currentFrameTime && g_game.quests.isQuestStorage(key, value, oldValue)) {
-				lastQuestlogUpdate = currentFrameTime;
-				sendTextMessage(MESSAGE_EVENT_ADVANCE, "Your questlog has been updated.");
-			}
+			g_events->eventOnStorageUpdate(this, key, value, oldValue, currentFrameTime);
 		}
 	} else {
 		storageMap.erase(key);
@@ -4402,36 +4399,6 @@ void Player::sendModalWindow(const ModalWindow& modalWindow)
 void Player::clearModalWindows()
 {
 	modalWindows.clear();
-}
-
-uint16_t Player::getHelpers() const
-{
-	uint16_t helpers;
-
-	if (guild && party) {
-		std::unordered_set<Player*> helperSet;
-
-		const auto& guildMembers = guild->getMembersOnline();
-		helperSet.insert(guildMembers.begin(), guildMembers.end());
-
-		const auto& partyMembers = party->getMembers();
-		helperSet.insert(partyMembers.begin(), partyMembers.end());
-
-		const auto& partyInvitees = party->getInvitees();
-		helperSet.insert(partyInvitees.begin(), partyInvitees.end());
-
-		helperSet.insert(party->getLeader());
-
-		helpers = helperSet.size();
-	} else if (guild) {
-		helpers = guild->getMembersOnline().size();
-	} else if (party) {
-		helpers = party->getMemberCount() + party->getInvitationCount() + 1;
-	} else {
-		helpers = 0;
-	}
-
-	return helpers;
 }
 
 void Player::sendClosePrivate(uint16_t channelId)

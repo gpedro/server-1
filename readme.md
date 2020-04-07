@@ -1,4 +1,4 @@
-The Forgotten Server - [![Build status](https://ci.appveyor.com/api/projects/status/0ty9sfen6qhapdt5/branch/master?svg=true)](https://ci.appveyor.com/project/marcomoa/server/branch/master)
+The Forgotten Server - [![Build status](https://ci.appveyor.com/api/projects/status/0ty9sfen6qhapdt5/branch/master?svg=true)](https://ci.appveyor.com/project/marcomoa/server/branch/master) [![Build Status](https://travis-ci.org/omarcopires/server.svg?branch=master)](https://travis-ci.org/omarcopires/server)
 ----------------------------------------------------
 
 The Forgotten Server is a free and open-source MMORPG server emulator written in C++. It is a fork of the [Forgotten Server](https://github.com/otland/forgottenserver) project.

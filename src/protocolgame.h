@@ -198,9 +198,6 @@ class ProtocolGame final : public Protocol
 		void sendCreatureTurn(const Creature* creature, uint32_t stackPos);
 		void sendCreatureSay(const Creature* creature, SpeakClasses type, const std::string& text, const Position* pos = nullptr);
 
-		void sendQuestLog();
-		void sendQuestLine(const Quest* quest);
-
 		void sendCancelWalk();
 		void sendChangeSpeed(const Creature* creature, uint32_t speed);
 		void sendCancelTarget();
@@ -245,7 +242,6 @@ class ProtocolGame final : public Protocol
 		void sendCreatureShield(const Creature* creature);
 		void sendCreatureSkull(const Creature* creature);
 		void sendCreatureType(const Creature* creature, uint8_t creatureType);
-		void sendCreatureHelpers(uint32_t creatureId, uint16_t helpers);
 
 		void sendShop(Npc* npc, const ShopInfoList& itemList);
 		void sendCloseShop();
@@ -363,7 +359,7 @@ class ProtocolGame final : public Protocol
 
 		uint32_t eventConnect = 0;
 		uint32_t challengeTimestamp = 0;
-		uint16_t version = CLIENT_VERSION_MIN;
+		uint16_t version = CLIENT_PROTOCOL;
 
 		uint8_t challengeRandom = 0;
 

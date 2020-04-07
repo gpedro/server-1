@@ -157,7 +157,7 @@ void ProtocolLogin::onRecvFirstMessage(NetworkMessage& msg)
 
 	if (version <= 760) {
 		std::ostringstream ss;
-		ss << "Only clients with protocol " << CLIENT_VERSION_STR << " allowed!";
+		ss << "Only clients with protocol " << CLIENT_PROTOCOL_STR << " allowed!";
 		disconnectClient(ss.str(), version);
 		return;
 	}
@@ -175,9 +175,9 @@ void ProtocolLogin::onRecvFirstMessage(NetworkMessage& msg)
 		setChecksumMethod(CHECKSUM_METHOD_ADLER32);
 	}
 
-	if (version < CLIENT_VERSION_MIN || version > CLIENT_VERSION_MAX) {
+	if (version < CLIENT_PROTOCOL) {
 		std::ostringstream ss;
-		ss << "Only clients with protocol " << CLIENT_VERSION_STR << " allowed!";
+		ss << "Only clients with protocol " << CLIENT_PROTOCOL_STR << " allowed!";
 		disconnectClient(ss.str(), version);
 		return;
 	}

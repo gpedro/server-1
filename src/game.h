@@ -31,7 +31,6 @@
 #include "raids.h"
 #include "npc.h"
 #include "wildcardtree.h"
-#include "quests.h"
 
 class ServiceManager;
 class Creature;
@@ -432,7 +431,6 @@ class Game
 		void changeLight(const Creature* creature);
 		void updateCreatureSkull(const Creature* creature);
 		void updatePlayerShield(Player* player);
-		void updatePlayerHelpers(const Player& player);
 		void updateCreatureType(Creature* creature);
 		void updateCreatureWalkthrough(const Creature* creature);
 
@@ -513,7 +511,6 @@ class Game
 		Map map;
 		Mounts mounts;
 		Raids raids;
-		Quests quests;
 
 	private:
 		bool playerSaySpell(Player* player, SpeakClasses type, const std::string& text);
