@@ -10,6 +10,7 @@ function largeSeaShell.onUse(player, item, fromPosition, target, toPosition, isH
 		elseif chance > 16 and chance <= 64 then
 			Game.createItem(math.random(281,282), 1, player:getPosition())
 			msg = "You found a beautiful pearl."
+			player:addAchievementProgress("Shell Seeker", 100)
 		else
 			msg = "Nothing is inside."
 		end

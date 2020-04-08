@@ -62,6 +62,7 @@ function music.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if not chance and instrument.remove then
 		item:remove()
 	end
+	player:addAchievementProgress("Rockstar", 10000)
 	return true
 end
 

@@ -12,7 +12,6 @@ for index, value in ipairs(window) do
 end
 
 function windows.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-
 	local tile = Tile(fromPosition)
 	local house = tile and tile:getHouse()
 	if not house then
@@ -26,6 +25,7 @@ function windows.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			house = tile and tile:getHouse()
 		end
 	end
+
 	if house then
 		if Tile(fromPosition):getHouse() and player:getAccountType() < ACCOUNT_TYPE_GAMEMASTER then
 			return false
@@ -44,6 +44,9 @@ function windows.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			item:transform(value.closedWindow)
 		end
 	end
+
+	player:addAchievementProgress("Do Not Disturb", 100)
+	player:addAchievementProgress("Let the Sunshine In", 100)
 	return true
 end
 

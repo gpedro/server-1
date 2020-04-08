@@ -57,11 +57,13 @@ function fishing.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 
 			if math.random(1, 100) >= 97 then
 				player:addItem(13992, 1)
+				player:addAchievement("Desert Fisher")
 				return true
 			end
 		elseif target.itemid == 7236 then
 			target:transform(target.itemid + 1)
 			target:decay()
+			player:addAchievementProgress("Exquisite Taste", 250)
 
 			local rareChance = math.random(1, 100)
 			if rareChance == 1 then
@@ -75,6 +77,8 @@ function fishing.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 				return true
 			end
 		end
+
+		player:addAchievementProgress("Here, Fishy Fishy!", 1000)
 		player:addItem(3578, 1)
 	end
 	return true

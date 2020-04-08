@@ -120,9 +120,19 @@ function skinning.onUse(player, item, fromPosition, target, toPosition, isHotkey
 		end
 	elseif randomChance <= skin.chance then
 		if table.contains({7441, 7442, 7444, 7445}, target.itemid) then
+			if skin.newItem == 7446 then
+				player:addAchievement("Ice Sculptor")
+				player:addAchievementProgress("Cold as Ice", 10)
+			end
 			target:transform(skin.newItem, 1)
 			effect = CONST_ME_HITAREA
 		else
+			if table.contains({5906, 5905}, skin.newItem) then
+				player:addAchievementProgress("Ashes to Dust", 500)
+			else
+				player:addAchievementProgress("Skin-Deep", 500)
+			end
+
 			player:addItem(skin.newItem, skin.amount or 1)
 		end
 	else

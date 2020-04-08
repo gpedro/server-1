@@ -117,6 +117,7 @@ function dolls.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	local chance = math.random(#sounds)
 	local sound = sounds[chance]
 	if item.itemid == 5668 then
+		player:addAchievementProgress("Superstitious", 100)
 		fromPosition:sendMagicEffect(CONST_ME_MAGIC_RED)
 		item:transform(item.itemid + 1)
 		item:decay()
