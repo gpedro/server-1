@@ -34640,7 +34640,6 @@
 		<attribute key="weight" value="13000"/>
 	</item>
 	<item id="22868" article="a" name="golden goblet">
-		<attribute key="description" value="It is given for reaching level 999. Awarded to <Character Name>"/>
 		<attribute key="weight" value="1500"/>
 	</item>
 	<item id="22869" article="a" name="demon oak wood"/>
@@ -45200,7 +45199,7 @@
 	<item id="31915" article="a" name="depot box XVIII">
 		<attribute key="containersize" value="32"/>
 	</item>
-	<item fromid="31916" toid="31919" article="a" article="a" name="bed">
+	<item fromid="31916" toid="31919" article="a" name="bed">
 		<attribute key="description" value="Sleeping human here."/>
 	</item>
 	<item id="31920" article="a" name="dead custodian">
